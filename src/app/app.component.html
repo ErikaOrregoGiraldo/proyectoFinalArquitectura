@@ -12,14 +12,15 @@
 <body>
   <div class="container__body">
     <header>
-      <button class="header__button" mat-raised-button color="primary"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
+      <button class="header__button" mat-raised-button color="primary"
+        (click)="processInstruction()"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
       <button class="header__button" mat-raised-button color="primary"><mat-icon>pause</mat-icon>Pausar</button>
     </header>
 
     <div class="container__body__principal">
       <mat-form-field class="container__body__principal__input">
         <mat-label>Escribe tu código aquí</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput [(ngModel)]="instructions"></textarea>
       </mat-form-field>
 
       <div class="container__body__principal__center">
