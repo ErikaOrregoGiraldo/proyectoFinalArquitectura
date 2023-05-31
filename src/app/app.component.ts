@@ -14,7 +14,7 @@ export class AppComponent {
   PC: Number = 1;
   MAR: Number = 1;
   MBR: Number = 1;
-  IR: Instruccion = new Instruccion;
+  IR: Instruccion | undefined;
   ALU: ALU = new ALU;
   memoria: Memoria = new Memoria;
   almacenGeneral: AlmacenGeneral = new AlmacenGeneral;
@@ -25,7 +25,12 @@ export class AppComponent {
 
   ejecutarLinea(){}
 
-  asignarInstrucciones(listaInstrucciones: string){}
+  asignarInstrucciones(instrucciones: string){
+    let instruccionesArray = instrucciones.split('\n');
+    instruccionesArray.forEach((instruccion) => {
+      this.memoria.agregarInstruccion(instruccion);
+    });
+  }
 
   cargarPrograma(){}
 }
