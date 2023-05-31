@@ -11,6 +11,10 @@ import { EstadoComputador } from './Enums/estado-computador';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  // Elementos de la interfaz
+  instrucciones: string = '';
+
+  // Elementos del procesador
   PC: Number = 1;
   MAR: Number = 1;
   MBR: Number = 1;
@@ -32,5 +36,8 @@ export class AppComponent {
     });
   }
 
-  cargarPrograma(){}
+  cargarPrograma(){
+    this.memoria = new Memoria;
+    console.log(this.instrucciones);
+  }
 }

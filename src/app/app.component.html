@@ -12,29 +12,64 @@
 <body>
   <div class="container__body">
     <header>
-      <button class="header__button" mat-raised-button color="primary"
-        (click)="processInstruction()"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
+      <button class="header__button" mat-raised-button color="primary" (click)="cargarPrograma()"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
       <button class="header__button" mat-raised-button color="primary"><mat-icon>pause</mat-icon>Pausar</button>
     </header>
 
     <div class="container__body__principal">
       <mat-form-field class="container__body__principal__input">
         <mat-label>Escribe tu código aquí</mat-label>
-        <textarea matInput [(ngModel)]="instructions"></textarea>
+        <textarea matInput [(ngModel)]="instrucciones"></textarea>
       </mat-form-field>
 
       <div class="container__body__principal__center">
 
         <div class="container__body__principal__center__down">
           <div class="container__body__principal__center__first-container">
-            <div class="PC">PC</div>
-            <div class="MAR">MAR</div>
+            <div class="PC">
+              PC
+              <br>
+              {{PC}}
+            </div>
+            <div class="MAR">
+              MAR
+              <br>
+              {{MAR}}
+            </div>
           </div>
           <div class="container__body__principal__center__UC">Unidad de control</div>
-          <div class="container__body__principal__center__ALU">ALU</div>
-          <div class="container__body__principal__center__MBR">MBR</div>
-          <div class="container__body__principal__center__IR">IR</div>
-          <div class="container__body__principal__center__AG">Almacén general</div>
+          <div class="container__body__principal__center__ALU">
+            <div>
+              <div>
+                <span>{{ALU.operando1}}</span> ***** <span>{{ALU.operando2}}</span>
+              </div>
+              ALU
+              <br>
+              {{ALU.operacionAEjecutar}}
+            </div>
+          </div>
+          <div class="container__body__principal__center__MBR">
+            MBR
+            <br>
+            {{MBR}}
+          </div>
+          <div class="container__body__principal__center__IR">
+            IR
+            <br>
+            {{IR}}
+          </div>
+          <div class="container__body__principal__center__AG">
+            <div>
+              Almacén general
+              <br>
+              <div>
+                Ax: {{almacenGeneral.Ax}} - Bx: {{almacenGeneral.Bx}} <br>
+                Cx: {{almacenGeneral.Cx}} - Dx: {{almacenGeneral.Dx}} <br>
+                Ex: {{almacenGeneral.Ex}} - Fx: {{almacenGeneral.Fx}} <br>
+                Gx: {{almacenGeneral.Gx}} - Hx: {{almacenGeneral.Hx}}
+              </div>
+            </div>
+          </div>
         </div>
 
 
