@@ -1,44 +1,31 @@
 import { Component } from '@angular/core';
+import { Instruccion } from './Models/instruccion';
+import { ALU } from './Models/alu';
+import { Memoria } from './Models/memoria';
+import { AlmacenGeneral } from './Models/almacen-general';
+import { ElementoProcesador } from './Enums/elemento-procesador';
+import { EstadoComputador } from './Enums/estado-computador';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'proyectoFinalArquitectura';
-  instructions: string = '';
+  PC: Number = 1;
+  MAR: Number = 1;
+  MBR: Number = 1;
+  IR: Instruccion = new Instruccion;
+  ALU: ALU = new ALU;
+  memoria: Memoria = new Memoria;
+  almacenGeneral: AlmacenGeneral = new AlmacenGeneral;
+  elementoActivo!: ElementoProcesador;
+  estado!: EstadoComputador;
 
-  getInstructions(): string[][] {
-    let operandsInstruction: string[][] = [];
-    let lineInstruction = this.instructions.split(';');
-    lineInstruction.forEach((line) => {
-      operandsInstruction.push(line.trim().split(' '));
-    });
-    return operandsInstruction;
-  }
+  hayLineaPorEjecutar(){}
 
-  processInstruction() {
-    const instructions = this.getInstructions();
-    instructions.forEach((instruction) => {
-      if (instruction.length > 1) {
-        if (instruction[0] === 'SUM') {
-          this.suma(instruction);
-        } else if (instruction[0] === 'RES') {
-          this.resta(instruction);
-        } else {
-          console.log('No existe la instrucción');
-        }
-      }
-    });
-  }
+  ejecutarLinea(){}
 
-  suma(instruction: string[]) {
-    const resultado = parseFloat(instruction[1]) + parseFloat(instruction[2]);
-    console.log('El resultado de la suma es ' + resultado);
-  }
+  asignarInstrucciones(listaInstrucciones: string){}
 
-  resta(instruction: string[]) {
-    const resultado = parseFloat(instruction[1]) - parseFloat(instruction[2]);
-    console.log('El resultado de la resta es ' + resultado);
-  }
+  cargarPrograma(){}
 }
