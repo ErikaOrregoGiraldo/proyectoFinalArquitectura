@@ -12,34 +12,34 @@
 <body>
   <div class="container__body">
     <header>
-      <button class="header__button" mat-raised-button color="primary" (click)="cargarYEjecutarPrograma()" [disabled]="!habilitarBtnEjecutar"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
-      <button class="header__button" mat-raised-button color="primary" (click)="pausarPrograma()" [disabled]="!habilitarBtnPausar"><mat-icon>pause</mat-icon>Pausar</button>
-      <button class="header__button" mat-raised-button color="primary" (click)="reanudarPrograma()" [disabled]="!habilitarBtnReanudar"><mat-icon>play</mat-icon>Continuar</button>
+      <button class="header__button" mat-raised-button color="primary" (click)="cargarYEjecutarInstrucciones()" [disabled]="!habilitarBtnEjecutarPrograma"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
+      <button class="header__button" mat-raised-button color="primary" (click)="pausarEjecucion()" [disabled]="!habilitarBtnPausar"><mat-icon>pause</mat-icon>Pausar</button>
+      <button class="header__button" mat-raised-button color="primary" (click)="reanudarEjecucion()" [disabled]="!habilitarBtnReanudar"><mat-icon>play</mat-icon>Continuar</button>
     </header>
 
     <div class="container__body__principal">
       <mat-form-field class="container__body__principal__input">
         <mat-label>Escribe tu código aquí</mat-label>
-        <textarea matInput [(ngModel)]="instrucciones"></textarea>
+        <textarea matInput [(ngModel)]="instruccionesProgramaIntroducidas"></textarea>
       </mat-form-field>
 
       <div class="container__body__principal__center">
 
         <div class="container__body__principal__center__down">
           <div class="container__body__principal__center__first-container">
-            <div class="PC">
+            <div class="PC" [ngClass]="{'elemento__procesador__activo': pcEstaActivo}">
               PC
               <br>
               {{PC}}
             </div>
-            <div class="MAR">
+            <div class="MAR" [ngClass]="{'elemento__procesador__activo': marEstaActivo}">
               MAR
               <br>
               {{MAR}}
             </div>
           </div>
           <div class="container__body__principal__center__UC">Unidad de control</div>
-          <div class="container__body__principal__center__ALU">
+          <div class="container__body__principal__center__ALU" [ngClass]="{'elemento__procesador__activo': aluEstaActiva}">
             <div>
               <div>
                 <span>{{ALU.operando1}}</span> ***** <span>{{ALU.operando2}}</span>
@@ -49,17 +49,17 @@
               {{ALU.operacionAEjecutar}}
             </div>
           </div>
-          <div class="container__body__principal__center__MBR">
+          <div class="container__body__principal__center__MBR" [ngClass]="{'elemento__procesador__activo': mbrEstaActivo}">
             MBR
             <br>
             {{MBR}}
           </div>
-          <div class="container__body__principal__center__IR">
+          <div class="container__body__principal__center__IR" [ngClass]="{'elemento__procesador__activo': irEstaActivo}">
             IR
             <br>
             {{IR}}
           </div>
-          <div class="container__body__principal__center__AG">
+          <div class="container__body__principal__center__AG" [ngClass]="{'elemento__procesador__activo': almacenGeneralEstaActivo}">
             <div>
               Almacén general
               <br>
@@ -77,25 +77,25 @@
       </div>
 
       <div class="container__body__principal__buses">
-        <div class="buses__container">
+        <div class="buses__container" [ngClass]="{'elemento__procesador__activo': busDireccionesEstaActivo}">
           <div class="directions"></div>
           <div class="bus_name">Bus de direcciones</div>
         </div>
-        <div>
+        <div [ngClass]="{'elemento__procesador__activo': busDatosEstaActivo}">
           <div class="data"></div>
           <div class="bus_name">Bus de datos</div>
         </div>
-        <div>
+        <div [ngClass]="{'elemento__procesador__activo': busDatosEstaActivo}">
           <div class="control"></div>
           <div class="bus_name">Bus de control</div>
         </div>
       </div>
 
-      <mat-card class="container__body__principal__card">
+      <mat-card class="container__body__principal__card" [ngClass]="{'elemento__procesador__activo': memoriaEstaActiva}">
         <mat-card-title>Memoria principal</mat-card-title>
         <mat-card-content>
           <div *ngFor="let instruccion of memoria.celdas; index as index">
-            {{index+1}} - {{instruccion.toString()}}
+            {{index+1}} - {{instruccion}}
           </div>
         </mat-card-content>
       </mat-card>
