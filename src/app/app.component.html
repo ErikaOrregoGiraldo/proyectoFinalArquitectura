@@ -12,8 +12,9 @@
 <body>
   <div class="container__body">
     <header>
-      <button class="header__button" mat-raised-button color="primary" (click)="cargarPrograma()"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
-      <button class="header__button" mat-raised-button color="primary"><mat-icon>pause</mat-icon>Pausar</button>
+      <button class="header__button" mat-raised-button color="primary" (click)="cargarYEjecutarPrograma()" [disabled]="!habilitarBtnEjecutar"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
+      <button class="header__button" mat-raised-button color="primary" (click)="pausarPrograma()" [disabled]="!habilitarBtnPausar"><mat-icon>pause</mat-icon>Pausar</button>
+      <button class="header__button" mat-raised-button color="primary" (click)="reanudarPrograma()" [disabled]="!habilitarBtnReanudar"><mat-icon>play</mat-icon>Continuar</button>
     </header>
 
     <div class="container__body__principal">
@@ -92,7 +93,11 @@
 
       <mat-card class="container__body__principal__card">
         <mat-card-title>Memoria principal</mat-card-title>
-        <mat-card-content>Simple card</mat-card-content>
+        <mat-card-content>
+          <div *ngFor="let instruccion of memoria.celdas; index as index">
+            {{index+1}} - {{instruccion.toString()}}
+          </div>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>

@@ -10,6 +10,7 @@ export class Instruccion {
 
   constructor(textoInstruccion: String) {
     this.textoInstruccion = textoInstruccion;
+    this.descomponerInstruccion();
   }
 
   descomponerInstruccion() {
@@ -21,7 +22,7 @@ export class Instruccion {
   }
 
   obtenerOperacion(operacion: string) {
-    switch (operacion) {
+    switch (operacion.toUpperCase()) {
       case "LOAD":
         return OperacionInstruccion.LOAD;
       case "MUL":
@@ -42,25 +43,32 @@ export class Instruccion {
   }
 
   obtenerOperando(operando: string) {
-    switch (operando) {
-      case "AX":
+    if (operando == undefined) {
+      return undefined;
+    }
+    switch (operando.toUpperCase()) {
+      case "A":
         return VariableInstruccion.AX;
-      case "BX":
+      case "B":
         return VariableInstruccion.BX;
-      case "CX":
+      case "C":
         return VariableInstruccion.CX;
-      case "DX":
+      case "D":
         return VariableInstruccion.DX;
-      case "EX":
+      case "E":
         return VariableInstruccion.EX;
-      case "FX":
+      case "F":
         return VariableInstruccion.FX;
-      case "GX":
+      case "G":
         return VariableInstruccion.GX;
-      case "HX":
+      case "H":
         return VariableInstruccion.HX;
       default:
         return Number(operando);
     }
+  }
+
+  toString() {
+    return this.textoInstruccion;
   }
 }
