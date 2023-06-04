@@ -13,8 +13,6 @@
   <div class="container__body">
     <header>
       <button class="header__button" mat-raised-button color="primary" (click)="cargarYEjecutarInstrucciones()" [disabled]="!habilitarBtnEjecutar"><mat-icon>play_arrow</mat-icon>Ejecutar</button>
-      <button class="header__button" mat-raised-button color="primary" (click)="pausarEjecucion()" [disabled]="!habilitarBtnPausar"><mat-icon>pause</mat-icon>Pausar</button>
-      <button class="header__button" mat-raised-button color="primary" (click)="reanudarEjecucion()" [disabled]="!habilitarBtnReanudar"><mat-icon>play</mat-icon>Continuar</button>
     </header>
 
     <div class="container__body__principal">
@@ -30,12 +28,12 @@
             <div class="PC" [ngClass]="{'elemento__procesador__activo': pcEstaActivo}">
               PC
               <br>
-              {{PC}}
+              {{PC+1}}
             </div>
             <div class="MAR" [ngClass]="{'elemento__procesador__activo': marEstaActivo}">
               MAR
               <br>
-              {{MAR}}
+              {{MAR+1}}
             </div>
           </div>
           <div class="container__body__principal__center__UC" [ngClass]="{'elemento__procesador__activo': unidadControlEstaActiva}">
@@ -87,7 +85,7 @@
           <div class="data"></div>
           <div class="bus_name">Bus de datos</div>
         </div>
-        <div [ngClass]="{'elemento__procesador__activo': busDatosEstaActivo}">
+        <div [ngClass]="{'elemento__procesador__activo': busControlEstaActivo}">
           <div class="control"></div>
           <div class="bus_name">Bus de control</div>
         </div>

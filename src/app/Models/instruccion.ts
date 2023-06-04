@@ -33,8 +33,6 @@ export class Instruccion {
         return OperacionInstruccion.SUB;
       case "DIV":
         return OperacionInstruccion.DIV;
-      case "MOD":
-        return OperacionInstruccion.MOD;
       case "MOVE":
         return OperacionInstruccion.MOVE;
       default:

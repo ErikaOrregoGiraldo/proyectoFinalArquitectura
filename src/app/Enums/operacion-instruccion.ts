@@ -4,6 +4,5 @@ export enum OperacionInstruccion {
   ADD,
   SUB,
   DIV,
-  MOD,
   MOVE,
 }
