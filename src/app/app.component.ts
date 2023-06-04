@@ -61,6 +61,9 @@ export class AppComponent {
       this.elementoActivo = ElementoProcesador.MAR;
     })
     await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
+      this.MAR = this.PC;
+    })
+    await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
       this.elementoActivo = ElementoProcesador.BUS_DIRECCIONES;
     })
     await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
@@ -84,8 +87,8 @@ export class AppComponent {
     await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
       this.elementoActivo = ElementoProcesador.UNIDAD_CONTROL;
     })
-    await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
-      this.ejecutarInstruccion();
+    await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(async () => {
+      await this.ejecutarInstruccion();
     })
     await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
       this.elementoActivo = ElementoProcesador.UNIDAD_CONTROL;
@@ -96,7 +99,7 @@ export class AppComponent {
     }
   }
 
-  private ejecutarInstruccion(): void {
+  private async ejecutarInstruccion(): Promise<void> {
     if (this.IR == undefined) {
       return;
     }
@@ -107,10 +110,22 @@ export class AppComponent {
 
     switch (operacion) {
       case OperacionInstruccion.LOAD:
-        this.ejecutarInstruccionLoad(operando1, operando2);
+        await this.ejecutarInstruccionLoad(operando1, operando2);
         break;
       case OperacionInstruccion.ADD:
-        this.ejecutarInstruccionMatematica(OperacionInstruccion.ADD, operando1, operando2, operando3);
+        await this.ejecutarInstruccionMatematica(OperacionInstruccion.ADD, operando1, operando2, operando3);
+        break;
+      case OperacionInstruccion.SUB:
+        await this.ejecutarInstruccionMatematica(OperacionInstruccion.SUB, operando1, operando2, operando3);
+        break;
+      case OperacionInstruccion.MUL:
+        await this.ejecutarInstruccionMatematica(OperacionInstruccion.MUL, operando1, operando2, operando3);
+        break;
+      case OperacionInstruccion.DIV:
+        await this.ejecutarInstruccionMatematica(OperacionInstruccion.DIV, operando1, operando2, operando3);
+        break;
+      case OperacionInstruccion.MOVE:
+        await this.ejecutarInstruccionMove(operando1, operando2);
         break;
       default:
         break;
@@ -124,7 +139,6 @@ export class AppComponent {
   // -------------------------------
   // -------------------------------
   private async ejecutarInstruccionLoad(variableAGuardar: number | VariableInstruccion | undefined, numero: number | VariableInstruccion | undefined): Promise<void> {
-    debugger
     if (variableAGuardar == undefined || numero == undefined) {
       return;
     }
@@ -197,8 +211,8 @@ export class AppComponent {
     }
   }
 
-  private async ejecutarOperacionALU(operacion: OperacionInstruccion, numero1: number | VariableInstruccion | undefined, numero2: number | VariableInstruccion | undefined): Promise<number> {
-    if (numero1 == undefined || numero2 == undefined) {
+  private async ejecutarOperacionALU(operacion: OperacionInstruccion, operando1: number | VariableInstruccion | undefined, operando2: number | VariableInstruccion | undefined): Promise<number> {
+    if (operando1 == undefined || operando2 == undefined) {
       return 0;
     }
     await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
@@ -207,8 +221,36 @@ export class AppComponent {
     await this.ejecutarTareaService.ejecutarTareaDespuesDeCiertoTiempo(() => {
       this.elementoActivo = ElementoProcesador.ALMACEN_GENERAL;
     })
+    const numero1 = this.obtenerValorAlmacenGeneral(operando1);
+    const numero2 = this.obtenerValorAlmacenGeneral(operando2);
     const resultadoOperacion = this.ALU.ejecutarOperacion(operacion, numero1, numero2);
     return resultadoOperacion;
+  }
+
+  private obtenerValorAlmacenGeneral(variableAObtener: number | VariableInstruccion | undefined) {
+    if (variableAObtener == undefined) {
+      return 0;
+    }
+    switch(variableAObtener) {
+      case VariableInstruccion.A:
+        return this.almacenGeneral.A;
+      case VariableInstruccion.B:
+        return this.almacenGeneral.B;
+      case VariableInstruccion.C:
+        return this.almacenGeneral.C;
+      case VariableInstruccion.D:
+        return this.almacenGeneral.D;
+      case VariableInstruccion.E:
+        return this.almacenGeneral.E;
+      case VariableInstruccion.F:
+        return this.almacenGeneral.F;
+      case VariableInstruccion.G:
+        return this.almacenGeneral.G;
+      case VariableInstruccion.H:
+        return this.almacenGeneral.H;
+      default:
+        return 0;
+    }
   }
 
   private async ejecutarInstruccionMove(variableOrigen: number | VariableInstruccion | undefined, variableDestino: number | VariableInstruccion | undefined): Promise<void> {
@@ -220,33 +262,34 @@ export class AppComponent {
     })
     switch(variableDestino) {
       case VariableInstruccion.A:
-        this.almacenGeneral.A = variableOrigen;
+        this.almacenGeneral.A = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       case VariableInstruccion.B:
-        this.almacenGeneral.B = variableOrigen;
+        this.almacenGeneral.B = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       case VariableInstruccion.C:
-        this.almacenGeneral.C = variableOrigen;
+        this.almacenGeneral.C = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       case VariableInstruccion.D:
-        this.almacenGeneral.D = variableOrigen;
+        this.almacenGeneral.D = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       case VariableInstruccion.E:
-        this.almacenGeneral.E = variableOrigen;
+        this.almacenGeneral.E = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       case VariableInstruccion.F:
-        this.almacenGeneral.F = variableOrigen;
+        this.almacenGeneral.F = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       case VariableInstruccion.G:
-        this.almacenGeneral.G = variableOrigen;
+        this.almacenGeneral.G = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       case VariableInstruccion.H:
-        this.almacenGeneral.H = variableOrigen;
+        this.almacenGeneral.H = this.obtenerValorAlmacenGeneral(variableOrigen);
         break;
       default:
         break;
     }
   }
+
 
 
   // Getters de estado de la interfaz

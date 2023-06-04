@@ -77,16 +77,16 @@
       </div>
 
       <div class="container__body__principal__buses">
-        <div class="buses__container" [ngClass]="{'elemento__procesador__activo': busDireccionesEstaActivo}">
-          <div class="directions"></div>
+        <div class="buses__container">
+          <div class="directions" [ngClass]="{'elemento__procesador__activo': busDireccionesEstaActivo}"></div>
           <div class="bus_name">Bus de direcciones</div>
         </div>
-        <div [ngClass]="{'elemento__procesador__activo': busDatosEstaActivo}">
-          <div class="data"></div>
+        <div>
+          <div class="data" [ngClass]="{'elemento__procesador__activo': busDatosEstaActivo}"></div>
           <div class="bus_name">Bus de datos</div>
         </div>
-        <div [ngClass]="{'elemento__procesador__activo': busControlEstaActivo}">
-          <div class="control"></div>
+        <div>
+          <div class="control" [ngClass]="{'elemento__procesador__activo': busControlEstaActivo}"></div>
           <div class="bus_name">Bus de control</div>
         </div>
       </div>

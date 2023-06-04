@@ -1,8 +1,8 @@
 export enum OperacionInstruccion {
-  LOAD,
-  MUL,
-  ADD,
-  SUB,
-  DIV,
-  MOVE,
+  LOAD = 'CARGAR',
+  MUL = 'MULTIPLICAR',
+  ADD = 'SUMAR',
+  SUB = 'RESTAR',
+  DIV = 'DIVIDIR',
+  MOVE = 'MOVER',
 }
