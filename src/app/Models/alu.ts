@@ -25,20 +25,20 @@ export class ALU {
   }
 
   sumar(operando1: number, operando2: number): number {
-    return operando1.valueOf() + operando2.valueOf();
+    return operando1 + operando2;
   }
 
   restar(operando1: number, operando2: number): number {
-    return operando1.valueOf() - operando2.valueOf();
+    return operando1 - operando2;
   }
 
   multiplicar(operando1: number, operando2: number): number {
-    return operando1.valueOf() * operando2.valueOf();
+    return operando1 * operando2;
   }
 
   dividir(operando1: number, operando2: number): number {
     try {
-      return operando1.valueOf() / operando2.valueOf();
+      return operando1 / operando2;
     } catch (error) {
       return 0;
     }

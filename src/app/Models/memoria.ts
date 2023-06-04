@@ -7,7 +7,7 @@ export class Memoria {
     this.celdas.push(new Instruccion(instruccion));
   }
 
-  obtenerInstruccion(direccion: number) {
-    return this.celdas[direccion.valueOf()];
+  obtenerInstruccion(direccion: number): Instruccion | undefined {
+    return this.celdas[direccion];
   }
 }
