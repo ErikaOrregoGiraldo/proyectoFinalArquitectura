@@ -1,10 +1,10 @@
 export enum VariableInstruccion {
-  AX,
-  BX,
-  CX,
-  DX,
-  EX,
-  FX,
-  GX,
-  HX
+  A,
+  B,
+  C,
+  D,
+  E,
+  F,
+  G,
+  H
 }

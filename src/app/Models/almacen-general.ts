@@ -1,10 +1,10 @@
 export class AlmacenGeneral {
-  Ax: number = 0;
-  Bx: number = 0;
-  Cx: number = 0;
-  Dx: number = 0;
-  Ex: number = 0;
-  Fx: number = 0;
-  Gx: number = 0;
-  Hx: number = 0;
+  A: number = 0;
+  B: number = 0;
+  C: number = 0;
+  D: number = 0;
+  E: number = 0;
+  F: number = 0;
+  G: number = 0;
+  H: number = 0;
 }

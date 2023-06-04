@@ -48,21 +48,21 @@ export class Instruccion {
     }
     switch (operando.toUpperCase()) {
       case "A":
-        return VariableInstruccion.AX;
+        return VariableInstruccion.A;
       case "B":
-        return VariableInstruccion.BX;
+        return VariableInstruccion.B;
       case "C":
-        return VariableInstruccion.CX;
+        return VariableInstruccion.C;
       case "D":
-        return VariableInstruccion.DX;
+        return VariableInstruccion.D;
       case "E":
-        return VariableInstruccion.EX;
+        return VariableInstruccion.E;
       case "F":
-        return VariableInstruccion.FX;
+        return VariableInstruccion.F;
       case "G":
-        return VariableInstruccion.GX;
+        return VariableInstruccion.G;
       case "H":
-        return VariableInstruccion.HX;
+        return VariableInstruccion.H;
       default:
         return Number(operando);
     }
