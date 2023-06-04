@@ -3,17 +3,17 @@ import { VariableInstruccion } from "../Enums/variable-instruccion";
 
 export class Instruccion {
   operacion: OperacionInstruccion | undefined;
-  operando1: Number | VariableInstruccion | undefined;
-  operando2: Number | VariableInstruccion | undefined;
-  operando3: Number | VariableInstruccion | undefined;
-  textoInstruccion: String;
+  operando1: number | VariableInstruccion | undefined;
+  operando2: number | VariableInstruccion | undefined;
+  operando3: number | VariableInstruccion | undefined;
+  textoInstruccion: string;
 
-  constructor(textoInstruccion: String) {
+  constructor(textoInstruccion: string) {
     this.textoInstruccion = textoInstruccion;
     this.descomponerInstruccion();
   }
 
-  descomponerInstruccion() {
+  descomponerInstruccion(): void {
     let instruccionArray = this.textoInstruccion.split(" ");
     this.operacion = this.obtenerOperacion(instruccionArray[0]);
     this.operando1 = this.obtenerOperando(instruccionArray[1]);
@@ -21,7 +21,7 @@ export class Instruccion {
     this.operando3 = this.obtenerOperando(instruccionArray[3]);
   }
 
-  obtenerOperacion(operacion: string) {
+  obtenerOperacion(operacion: string): OperacionInstruccion | undefined {
     switch (operacion.toUpperCase()) {
       case "LOAD":
         return OperacionInstruccion.LOAD;
@@ -42,7 +42,7 @@ export class Instruccion {
     }
   }
 
-  obtenerOperando(operando: string) {
+  obtenerOperando(operando: string): number | VariableInstruccion | undefined {
     if (operando == undefined) {
       return undefined;
     }
@@ -68,7 +68,7 @@ export class Instruccion {
     }
   }
 
-  toString() {
+  toString(): string {
     return this.textoInstruccion;
   }
 }

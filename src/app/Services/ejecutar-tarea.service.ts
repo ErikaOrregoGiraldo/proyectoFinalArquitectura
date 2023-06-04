@@ -7,11 +7,11 @@ export class EjecutarTareaService {
 
   constructor() { }
 
-  ejecutarTareaDespuesDeCiertoTiempo(tarea: CallableFunction) {
+  ejecutarTareaDespuesDeCiertoTiempo(tarea: CallableFunction): Promise<void> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         tarea();
-        resolve(undefined);
+        resolve();
       }, 2000);
     });
   }

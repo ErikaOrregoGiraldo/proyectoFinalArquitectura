@@ -3,11 +3,11 @@ import { Instruccion } from "./instruccion";
 export class Memoria {
   celdas: Array<Instruccion> = new Array<Instruccion>();
 
-  agregarInstruccion(instruccion: String) {
+  agregarInstruccion(instruccion: string) {
     this.celdas.push(new Instruccion(instruccion));
   }
 
-  obtenerInstruccion(direccion: Number) {
+  obtenerInstruccion(direccion: number) {
     return this.celdas[direccion.valueOf()];
   }
 }

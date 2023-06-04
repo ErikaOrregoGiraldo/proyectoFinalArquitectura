@@ -2,10 +2,10 @@ import { OperacionInstruccion } from "../Enums/operacion-instruccion";
 
 export class ALU {
   operacionAEjecutar: OperacionInstruccion | undefined;
-  operando1: Number = 0;
-  operando2: Number = 0;
+  operando1: number = 0;
+  operando2: number = 0;
 
-  ejecutarOperacion(tipoOperacion: OperacionInstruccion, operando1: Number, operando2: Number) {
+  ejecutarOperacion(tipoOperacion: OperacionInstruccion, operando1: number, operando2: number) {
     this.operacionAEjecutar = tipoOperacion;
     this.operando1 = operando1;
     this.operando2 = operando2;
@@ -24,19 +24,19 @@ export class ALU {
     }
   }
 
-  sumar(operando1: Number, operando2: Number): Number {
+  sumar(operando1: number, operando2: number): number {
     return operando1.valueOf() + operando2.valueOf();
   }
 
-  restar(operando1: Number, operando2: Number): Number {
+  restar(operando1: number, operando2: number): number {
     return operando1.valueOf() - operando2.valueOf();
   }
 
-  multiplicar(operando1: Number, operando2: Number): Number {
+  multiplicar(operando1: number, operando2: number): number {
     return operando1.valueOf() * operando2.valueOf();
   }
 
-  dividir(operando1: Number, operando2: Number): Number {
+  dividir(operando1: number, operando2: number): number {
     try {
       return operando1.valueOf() / operando2.valueOf();
     } catch (error) {

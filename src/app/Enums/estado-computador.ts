@@ -1,6 +1,6 @@
 export enum EstadoComputador {
-  SIN_INICIAR = 'Sin iniciar',
-  EN_EJECUCION = 'En ejecución',
-  PAUSADO = 'Pausado',
-  FINALIZADO = 'Finalizado',
+  SIN_INICIAR,
+  EN_EJECUCION,
+  PAUSADO,
+  FINALIZADO,
 }
